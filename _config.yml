@@ -1,7 +1,18 @@
-title: Blog 
-author: Brik
-description: A simple blog powered by Jekyll and Streamlit
-baseurl: "/blog"  # Change this to your repo name
-url: "https://brikjr.github.io"  # Change USERNAME to your GitHub username
+title: "Your Blog"
+author: "Brik"
+description: "A minimal Jekyll blog"
+baseurl: "/blogs"  # This should match your repository name
+url: "https://brikjr.github.io"
+
 markdown: kramdown
-permalink: /blog/:year/:month/:day/:title
+permalink: /:year/:month/:day/:title
+
+exclude: 
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - admin/
