@@ -166,18 +166,28 @@ def main():
                 with col2:
                     if st.button("💾 Save Changes", key=f"save_{post['filename']}"):
                         if blog_manager.update_post(post['filename'], edited_title, edited_content):
-                            st.success("Post updated!")
                             if push_to_github():
                                 st.success("Changes pushed to GitHub!")
+                            st.success("Post updated!")
                             st.rerun()
                     
-                    if st.button("🗑️ Delete Post", key=f"delete_{post['filename']}", type="secondary"):
-                        if st.checkbox("Confirm deletion?", key=f"confirm_{post['filename']}"):
+                    # Modified delete section
+                    delete_button = st.button("🗑️ Delete Post", 
+                                           key=f"delete_{post['filename']}", 
+                                           type="secondary")
+                    
+                    if delete_button:
+                        confirm = st.checkbox("Are you sure you want to delete this post?", 
+                                           key=f"confirm_{post['filename']}")
+                        if confirm:
                             if blog_manager.delete_post(post['filename']):
-                                st.success("Post deleted!")
                                 if push_to_github():
-                                    st.success("Changes pushed to GitHub!")
+                                    st.success("Post deleted and changes pushed to GitHub!")
+                                else:
+                                    st.error("Post deleted but failed to push to GitHub")
                                 st.rerun()
+                            else:
+                                st.error("Failed to delete post")
 
 if __name__ == "__main__":
     main()
