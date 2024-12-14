@@ -16,6 +16,9 @@ class BlogManager:
         date = datetime.datetime.now().strftime('%Y-%m-%d')
         filename = f"{date}-{slug}.md"
         
+        # Process content to ensure proper line breaks
+        processed_content = self._process_content(content)
+        
         front_matter = {
             'layout': 'post',
             'title': title,
@@ -23,14 +26,22 @@ class BlogManager:
         }
         
         post_content = f"""---
-{yaml.dump(front_matter)}---
+    {yaml.dump(front_matter)}---
 
-{content}"""
+    {processed_content}"""
         
         post_path = self.posts_dir / filename
         post_path.write_text(post_content)
         self._git_push(f"Add post: {filename}")
         return True
+    
+    def _process_content(self, content):
+        # Split content into paragraphs
+        paragraphs = content.split('\n\n')
+        # Clean up paragraphs and ensure proper spacing
+        processed_paragraphs = [p.strip() for p in paragraphs if p.strip()]
+        # Join with double newlines for proper markdown spacing
+        return '\n\n'.join(processed_paragraphs)
 
     def get_all_posts(self):
         posts = []
@@ -52,6 +63,8 @@ class BlogManager:
         post_path = self.posts_dir / filename
         date = self._extract_date(filename)
         
+        processed_content = self._process_content(content)
+        
         front_matter = {
             'layout': 'post',
             'title': title,
@@ -59,9 +72,9 @@ class BlogManager:
         }
         
         post_content = f"""---
-{yaml.dump(front_matter)}---
+    {yaml.dump(front_matter)}---
 
-{content}"""
+    {processed_content}"""
         
         post_path.write_text(post_content)
         self._git_push(f"Update post: {filename}")
