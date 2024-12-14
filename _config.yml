@@ -1,0 +1,7 @@
+title: Blog 
+author: Brik
+description: A simple blog powered by Jekyll and Streamlit
+baseurl: "/blog"  # Change this to your repo name
+url: "https://brikjr.github.io"  # Change USERNAME to your GitHub username
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
