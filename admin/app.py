@@ -16,65 +16,69 @@ class BlogManager:
         date = datetime.datetime.now().strftime('%Y-%m-%d')
         filename = f"{date}-{slug}.md"
         
-        # Process content to ensure proper line breaks
-        processed_content = self._process_content(content)
-        
+        # Create proper YAML front matter
         front_matter = {
             'layout': 'post',
             'title': title,
-            'date': date,
+            'date': date
         }
         
-        post_content = f"""---
-    {yaml.dump(front_matter)}---
-
-    {processed_content}"""
+        # Ensure proper YAML formatting with dashes
+        post_content = "---\n"
+        post_content += yaml.dump(front_matter, default_flow_style=False, sort_keys=False)
+        post_content += "---\n\n"
+        post_content += content
         
         post_path = self.posts_dir / filename
         post_path.write_text(post_content)
         self._git_push(f"Add post: {filename}")
         return True
-    
-    def _process_content(self, content):
-        # Split content into paragraphs
-        paragraphs = content.split('\n\n')
-        # Clean up paragraphs and ensure proper spacing
-        processed_paragraphs = [p.strip() for p in paragraphs if p.strip()]
-        # Join with double newlines for proper markdown spacing
-        return '\n\n'.join(processed_paragraphs)
 
     def get_all_posts(self):
         posts = []
         for post_file in self.posts_dir.glob("*.md"):
-            content = post_file.read_text()
-            parts = content.split("---", 2)
-            if len(parts) >= 3:
-                front_matter = yaml.safe_load(parts[1])
-                post_content = parts[2].strip()
-                posts.append({
-                    'filename': post_file.name,
-                    'title': front_matter.get('title', ''),
-                    'date': front_matter.get('date', ''),
-                    'content': post_content
-                })
+            try:
+                content = post_file.read_text()
+                # Split content at the first and second '---'
+                parts = content.split("---", 2)
+                
+                if len(parts) >= 3:
+                    # Remove any leading/trailing whitespace from the YAML part
+                    yaml_content = parts[1].strip()
+                    try:
+                        front_matter = yaml.safe_load(yaml_content)
+                        if front_matter is None:
+                            front_matter = {}
+                        post_content = parts[2].strip()
+                        posts.append({
+                            'filename': post_file.name,
+                            'title': front_matter.get('title', ''),
+                            'date': front_matter.get('date', ''),
+                            'content': post_content
+                        })
+                    except yaml.YAMLError as e:
+                        st.error(f"Error parsing YAML in {post_file.name}: {e}")
+            except Exception as e:
+                st.error(f"Error reading {post_file.name}: {e}")
+                continue
         return sorted(posts, key=lambda x: x['date'], reverse=True)
 
     def update_post(self, filename, title, content):
         post_path = self.posts_dir / filename
         date = self._extract_date(filename)
         
-        processed_content = self._process_content(content)
-        
+        # Create proper YAML front matter
         front_matter = {
             'layout': 'post',
             'title': title,
-            'date': date,
+            'date': date
         }
         
-        post_content = f"""---
-    {yaml.dump(front_matter)}---
-
-    {processed_content}"""
+        # Ensure proper YAML formatting with dashes
+        post_content = "---\n"
+        post_content += yaml.dump(front_matter, default_flow_style=False, sort_keys=False)
+        post_content += "---\n\n"
+        post_content += content
         
         post_path.write_text(post_content)
         self._git_push(f"Update post: {filename}")
