@@ -68,11 +68,15 @@ class BlogManager:
         return True
 
     def delete_post(self, filename):
-        post_path = self.posts_dir / filename
-        if post_path.exists():
-            post_path.unlink()
-            return True
-        return False
+        try:
+            post_path = self.posts_dir / filename
+            if post_path.exists():
+                post_path.unlink()
+                return True
+            return False
+        except Exception as e:
+            st.error(f"Error deleting file: {e}")
+            return False
 
     def _create_slug(self, title):
         slug = title.lower()
@@ -86,12 +90,28 @@ class BlogManager:
 
 def push_to_github():
     try:
-        subprocess.run(['git', 'add', '../_posts/*'])
-        subprocess.run(['git', 'commit', '-m', 'Updated blog posts'])
-        subprocess.run(['git', 'push'])
+        # Change to the root directory of the blog
+        os.chdir('..')
+        
+        # Add all changes including deletions
+        subprocess.run(['git', 'add', '--all'], check=True)
+        
+        # Create commit
+        subprocess.run(['git', 'commit', '-m', 'Updated blog posts'], check=True)
+        
+        # Push changes
+        subprocess.run(['git', 'push'], check=True)
+        
+        # Change back to admin directory
+        os.chdir('admin')
         return True
+    except subprocess.CalledProcessError as e:
+        st.error(f"Git command failed: {e}")
+        os.chdir('admin')  # Ensure we return to admin directory
+        return False
     except Exception as e:
         st.error(f"Error pushing to GitHub: {e}")
+        os.chdir('admin')  # Ensure we return to admin directory
         return False
 
 def main():
