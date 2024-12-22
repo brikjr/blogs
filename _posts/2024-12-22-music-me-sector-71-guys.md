@@ -103,12 +103,16 @@ This track is a masterpiece; a raw, honest expression of emotions wrapped in a t
 
 TNT got them here; The Backbone of the Scene, Sector 71 movement wouldn’t be what it is without TNT Beats. TNT’s production is the emotional core of these tracks, perfectly complementing the raw lyricism and unfiltered narratives of the artists. TNT’s beats encapsulate the chaos, struggles, and triumphs of Delhi’s streets.
 
+<br>
+
 ---
 
 ### **Seedhe Maut: The OGs, The Legends, and The Mentors**  
 
 Massive respect is due to **Seedhe Maut** for nurturing this talent. They didn’t just collaborate; they gave them the stage. Tracks like *Batti* featuring Ab 17, *Taakat* featuring Lil Bhavi, and the iconic *Peace of Mind* brought Sector 71 to the forefront. Seedhe Maut’s dedication to the scene is unparalleled; they’re married to it, loyal to its roots, and always elevating the culture truly a DL91 era (label that was made by Seedhe Maut and signed these artists).  
+<br>
 
 ---
 
-Delhi's trap scene has OGs like DRV, Qaab and Rawal. Sector 71 guys, are new age with their distinct voices and vision are making a different sonic choice.
+<br>
+Delhi's trap scene has OGs like DRV, Qaab and Rawal. Sector 71 guys, are new age with their distinct voices and vision are making a difference.
