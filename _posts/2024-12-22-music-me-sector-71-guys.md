@@ -62,7 +62,7 @@ Bhaskar is unfiltered, pure, and undeniably **crass**. His raw, unapologetic sty
 
 <br>
 
-His art often ventures into controversial territory, with lyrics that include inappropriate references to women, and/or overly graphic explanation; making his approach both provocative and questionable. Disclaimer from my girlfriend don't do the shit he talks about. 
+His art often ventures into controversial territory, with lyrics that include inappropriate references to women, and/or overly graphic explanation; making his approach both provocative and questionable. 
  
 <br>
 For me, it's just art and I keep Bhaskar and Lil Bhavi as my favourites from Sector 71.
