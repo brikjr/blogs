@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts - Brik's Blog</title>
+    <link rel="stylesheet" href="/blogs/assets/css/style.css">
+    <script>
+        // Check for saved theme preference, otherwise use system preference
+        const getPreferredTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+        
+        // Apply theme
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+        
+        // Initialize theme
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme(getPreferredTheme());
+            
+            // Add click handler to theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1><a href="/blogs/">Brik's Blog</a></h1>
+        <nav class="nav">
+    <div class="nav-container">
+        <a href="https://brikjr.github.io" class="nav-link">Main</a>
+        <a href="https://brikjr.github.io/gallery" class="nav-link">Gallery</a>
+        <a href="/blogs/" class="nav-link">Blog</a>
+    </div>
+</nav>
+    </header>
+    <main>
+        <h1 id="blogs">Blogs</h1>
+
+<article class="post-preview">
+    <h2 class="post-title">
+        <a href="/blogs/2025/01/25/music-me-raftaar">Music &amp; Me - Raftaar</a>
+    </h2>
+    <div class="post-meta">January 25, 2025</div>
+    <div class="post-excerpt">
+        If this blog was about Raftaar. You probably don’t need a blog. It could be summed up in a word: a legend or a Wikipedia article. But he has that...
+        <a href="/blogs/2025/01/25/music-me-raftaar" class="read-more">Read more →</a>
+    </div>
+</article>
+
+<article class="post-preview">
+    <h2 class="post-title">
+        <a href="/blogs/2024/12/22/music-me-sector-71-guys">Music &amp; Me: Sector 71 Guys</a>
+    </h2>
+    <div class="post-meta">December 22, 2024</div>
+    <div class="post-excerpt">
+        The Delhi trap scene has been a sonic adventure, a raw expression of life in the streets. My journey began with Vasudev’s early work; his Ghaziabad Mixtape was packed with...
+        <a href="/blogs/2024/12/22/music-me-sector-71-guys" class="read-more">Read more →</a>
+    </div>
+</article>
+
+<article class="post-preview">
+    <h2 class="post-title">
+        <a href="/blogs/2024/12/19/parat">Music &amp; Me - Parat </a>
+    </h2>
+    <div class="post-meta">December 19, 2024</div>
+    <div class="post-excerpt">
+        While listening to this EP and looking at the album art, I found myself overwhelmed with emotion. It wasn’t just a collection of songs; it felt like a mirror.
+
+        <a href="/blogs/2024/12/19/parat" class="read-more">Read more →</a>
+    </div>
+</article>
+
+<article class="post-preview">
+    <h2 class="post-title">
+        <a href="/blogs/2024/12/14/music-me">Music &amp; Me</a>
+    </h2>
+    <div class="post-meta">December 14, 2024</div>
+    <div class="post-excerpt">
+        Music always had a special place for me. Starting from early days when I was ashamed of listening to music in front of my parents for some reason. To the...
+        <a href="/blogs/2024/12/14/music-me" class="read-more">Read more →</a>
+    </div>
+</article>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Brik</p>
+    </footer>
+</body>
+</html>
